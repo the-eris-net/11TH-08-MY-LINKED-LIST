@@ -21,5 +21,10 @@ public class Main {
         System.out.println(myLinkedList.getSize());
         myLinkedList.delete(4);
         System.out.println(myLinkedList);
+
+        System.out.println("# forEach");
+        for (String s:myLinkedList){
+            System.out.println(s);
+        }
     }
 }

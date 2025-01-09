@@ -1,6 +1,8 @@
 package my.project.mylinkedlist;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class MyLinkedList<T> implements LinkedListInterface<T> {
     private Node<T> head = null;
@@ -88,7 +90,32 @@ public class MyLinkedList<T> implements LinkedListInterface<T> {
     }
 
     @Override
+    public String toString() {
+        List<String> result = new ArrayList<>();
+        Node<T> current = head;
+        while (current != null) {
+            result.add(current.getData().toString());
+            current = current.getNext();
+        }
+        return String.join(" -> ", result);
+    }
+
+    @Override
     public Iterator<T> iterator() {
-        return null;
+        return new Iterator<>() {
+            private Node<T> current = head;
+
+            @Override
+            public boolean hasNext() {
+                return current != null;
+            }
+
+            @Override
+            public T next() {
+                T data = current.getData();
+                current = current.getNext();
+                return data;
+            }
+        };
     }
 }
